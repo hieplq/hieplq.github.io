@@ -10,6 +10,8 @@ Welcome to Just document's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   tool/sphinx/setup
+
 
 
 Indices and tables
