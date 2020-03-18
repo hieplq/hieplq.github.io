@@ -1,8 +1,8 @@
 {
-    "python.pythonPath"                       : "${env:PYTHON_DIR}/bin/python",        // use enviroment variable PYTHON_DIR for portable
+    "python.pythonPath"                       : "${env:PYTHON_SPHINX_DIR}/bin/python",        // use enviroment variable PYTHON_DIR for portable
     // https://docs.restructuredtext.net/articles/configuration.html
-    "restructuredtext.sphinxBuildPath"        : "${env:PYTHON_DIR}/bin/sphinx-build",  // isn't required when we already set python.pythonPath
-    "restructuredtext.linter.executablePath"  : "${env:PYTHON_DIR}/bin/rstcheck",      // isn't required when we already set python.pythonPath
+    "restructuredtext.sphinxBuildPath"        : "${env:PYTHON_SPHINX_DIR}/bin/sphinx-build",  // isn't required when we already set python.pythonPath
+    "restructuredtext.linter.executablePath"  : "${env:PYTHON_SPHINX_DIR}/bin/rstcheck",      // isn't required when we already set python.pythonPath
     "restructuredtext.linter.run"             : "onSave",                               // correct value onType, onSave, and off
     "restructuredtext.builtDocumentationPath" : "${workspaceRoot}/build/html",         // output sync with build by command line, make or sphinx-build
     "restructuredtext.confPath"               : "${workspaceFolder}/source",           // root source folder, contain conf.py
