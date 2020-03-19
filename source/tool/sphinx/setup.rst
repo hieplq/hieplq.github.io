@@ -1,6 +1,6 @@
-=================
-Setup Environment
-=================
+======================================
+Setup Environment For ReStructuredText
+======================================
 | This one is my practice on setup environment to write by document by use:
 |   `Linux Mint 19.3 Tricia <https://www.linuxmint.com/download.php>`_ 
 |   `ReStructuredText <https://docutils.sourceforge.io/rst.html>`_ as markup syntax
