@@ -12,6 +12,7 @@ Welcome to Just document's documentation!
 
    tool/sphinx/setup
    tool/jekyll/setup
+   note/linuxCommonCommand
 
 
 
