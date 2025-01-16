@@ -1,6 +1,22 @@
 ## install follow [guide](https://postgres.ai/docs/how-to-guides/administration/install-dle-manually)
 
-**change server.yml to fix issue report [here](https://github.com/postgres-ai/database-lab-engine/issues/227)**
+### **change server.yml to fix issue report [here](https://github.com/postgres-ai/database-lab-engine/issues/227)**
+
+open ~/.dblab/engine/configs/serveryml
+
+replace: dockerImage: "postgresai/ce-ui:latest"
+
+by: dockerImage: "postgresai/ce-ui:3.5.0"
+
+### **prepare datasource**
+
+on guide step [prepare datasource](https://postgres.ai/docs/how-to-guides/administration/install-dle-manually#prepare-database-data-directory) has 3 method to setup
+
+1. generate a test database
+2. use pg_basebackup to clone production database
+3. use dump/restore to clone production database
+
+we can find more method at [datasource](https://postgres.ai/docs/how-to-guides/administration/data) section
 
 ```
 export DBLAB_DISK=/dev/sda3
