@@ -76,4 +76,3 @@ The purpose of this section is to offer a cheatsheet for adding an new locale an
   - https://docusaurus.io/docs/i18n/git
   - Start translating...
   - Note: copying over the files to be translated is essentially like forking the documentation. It is recommended that you wait until the English docs are near-complete before copying over the content to minimize syncing efforts for future edits.
-  - /
