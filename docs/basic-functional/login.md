@@ -11,6 +11,8 @@ on each of its icons or buttons, it clearly shows the name and/or role it plays.
 system you may use any browser (Chrome, Firefox, Explorer ...) by entering the URL
 provided. For optimum performance navigating the system with Google Chrome.
 
+![](https://holocron.so/uploads/831dbe53-image.png)
+
 ## Login to the system - Authentication
 
 The first step of the login process focuses on authentication (who are you) and language preference.
