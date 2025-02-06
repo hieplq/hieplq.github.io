@@ -1,5 +1,5 @@
 ---
-title: Markdown page example
+my suggest to change can help to guess wheretitle: Markdown page example
 ---
 
 # Markdown page example
