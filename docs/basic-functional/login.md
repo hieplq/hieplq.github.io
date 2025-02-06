@@ -11,13 +11,13 @@ on each of its icons or buttons, it clearly shows the name and/or role it plays.
 system you may use any browser (Chrome, Firefox, Explorer ...) by entering the URL
 provided. For optimum performance navigating the system with Google Chrome.
 
-![](https://holocron.so/uploads/831dbe53-image.png)
-
 ## Login to the system - Authentication
 
 The first step of the login process focuses on authentication (who are you) and language preference.
 
 You have to enter your User name and a Password. It must be correct including look at capital and small letters.
+
+![](https://holocron.so/uploads/831dbe53-image.png)
 
 If you want to select a role you have to tick the box. In the following dialoge you can also specify an Organizational unit, Warehouse or a Date for your entries.
 To enter Idempiere simply enter the URL assigned in any internet browser,
