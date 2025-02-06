@@ -49,14 +49,18 @@ Now, any edits you make will be auto reflected live in the browser (without you 
 ## Online service like Stackblitz
 
 1. To get started, open [StackBlitz](https://stackblitz.com/) and sign in using your GitHub account
+
 2. Visit**repositories**and select 'idempiere.github.io'
 
    ![stackblitz-loadGithubRespository](static/readme/stackblitz-loadGithubRespository.png)
 
+
 3. StackBlitz offers a cloud-based Node.js development environment with a Visual Studio Code interface. This allows you to write and run Node.js without installing anything on your machine (actual it install to browse through [webcontainers](https://blog.stackblitz.com/posts/introducing-webcontainers/))
+
 4. This feature allows for simultaneous document editing and live preview updates. You can even open the live preview in a separate browser tab
 
    ![](static/readme/stackblitz-editor.png)
+
 
 5. The tool also allows you to perform Git operations
 
