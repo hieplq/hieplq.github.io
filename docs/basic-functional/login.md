@@ -17,12 +17,12 @@ The first step of the login process focuses on authentication (who are you) and 
 
 You have to enter your User name and a Password. It must be correct including look at capital and small letters.
 
-![](https://holocron.so/uploads/831dbe53-image.png)
-
 If you want to select a role you have to tick the box. In the following dialoge you can also specify an Organizational unit, Warehouse or a Date for your entries.
 To enter Idempiere simply enter the URL assigned in any internet browser,
 there you must enter User and Password provided by the administrator of the Idempiere
 system. Then select the desired system language from the drop down options.
+
+![](https://holocron.so/uploads/831dbe53-image.png)
 
 ![Login for iDempiere](./PNGs/Login.png)
 
