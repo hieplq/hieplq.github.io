@@ -19,7 +19,7 @@ This makes it hard to debug.
 
    Open `org.idempiere.p2/pom.xml` and add `<includeAllSources>`.
 
-   sed -i -r "s|(</includeAllDependencies>)|\1\n<includeAllSources>true</includeAllSources>|g" $PWD/org.idempiere.p2/pom.xml
+   sed -i -r "s|(`</includeAllDependencies>`)|\1\n `<includeAllSources>`true `</includeAllSources>`|g" $PWD/org.idempiere.p2/pom.xml
 
    <details>
    <summary>Add includeAllSources</summary>
@@ -77,7 +77,6 @@ This makes it hard to debug.
    rsync -avrP $srcRoot/org.idempiere.p2/target/repository $syncRoot/dev
 
    rsync -avrP $srcRoot/org.idempiere.p2.targetplatform/target/target-platform-repository $syncRoot/mirror
-
 4. Get list of artifacts
 
    * Setup update Eclipse with iDempiere source
