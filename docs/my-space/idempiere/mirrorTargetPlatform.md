@@ -19,6 +19,8 @@ This makes it hard to debug.
 
    Open `org.idempiere.p2/pom.xml` and add `<includeAllSources>`.
 
+   sed -i -r "s|(</includeAllDependencies>)|\1\n<includeAllSources>true</includeAllSources>|g" $PWD/org.idempiere.p2/pom.xml
+
    <details>
    <summary>Add includeAllSources</summary>
 
@@ -65,7 +67,17 @@ This makes it hard to debug.
    * missing bundle for running junit
 
    Copy and rename `[idempiere-source]/org.idempiere.p2/target/repository` to `~/target/idempiere-dev-12`
+
    Copy and rename `idempiere-12/org.idempiere.p2.targetplatform/target/target-platform-repository` to `~/target/idempiere-mirror-12`
+
+   export srcRoot=/mnt/data/1Dev/idempiere-source/idempiere-12
+
+   export syncRoot=/mnt/data/1Dev/idempiere-source/p2/2503-12-release
+
+   rsync -avrP $srcRoot/org.idempiere.p2/target/repository $syncRoot/dev
+
+   rsync -avrP $srcRoot/org.idempiere.p2.targetplatform/target/target-platform-repository $syncRoot/mirror
+
 4. Get list of artifacts
 
    * Setup update Eclipse with iDempiere source
@@ -85,6 +97,7 @@ This makes it hard to debug.
      ```
 
      to
+
      ```
      com.sun.xml.fastinfoset.FastInfoset [2.0.0,2.0.0]
      com.sun.xml.fastinfoset.FastInfoset [1.2.18,1.2.18]
