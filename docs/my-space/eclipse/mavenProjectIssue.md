@@ -63,11 +63,11 @@ that way manage relativePath at one place on sub.parent.pom.xml
 
 ### Redo Lifecycle Mapping Issue
 
-to redo issue open "org.adempiere.ui.zk/pom.xml" change ${revision} to 12.0.0-SNAPSHOT and get same issue
+to redo issue open "org.adempiere.ui.zk/pom.xml" change $`{revision}` to 12.0.0-SNAPSHOT and get same issue
 
 ![1745611004992](image/mavenProjectIssue/1745611004992.png)
 
-effect pom on both case use ${revision} and 12.0.0-SNAPSHOT is identify
+effect pom on both case use $`{revision}` and 12.0.0-SNAPSHOT is identify
 
 but life cycle mapping is difference
 
@@ -75,6 +75,6 @@ for use 12.0.0-SNAPSHOT
 
 ![1745611345134](image/mavenProjectIssue/1745611345134.png)
 
-for use ${revision}
+for use $`{revision}`
 
 ![1745611552885](image/mavenProjectIssue/1745611552885.png)
