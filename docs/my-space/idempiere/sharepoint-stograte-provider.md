@@ -1,26 +1,31 @@
-By default idempiere store file to database
+By default, Idempiere stores files in a database. It has built-in Storage Providers to use the file system. But what if you want to use remote storage like Google Drive, OneDrive, SharePoint, etc.?
 
-Has build Storage Providers to use file system
+Implementing a new Storage Provider for each remote storage is one option. This guide will help you use Rclone and the built-in file system Storage Providers to utilize remote storage.
 
-How about to use remote Storage like gdrive, ondrive, sharepoint,...?
+In this guide, we will use SharePoint-365 as an example for remote storage. You can find out more about the storage supported by Rclone [here](https://github.com/rclone/rclone?tab=readme-ov-file#storage-providers).
 
-Implement a new Storage Providers for each remote Storage is a option, this guide help you use rclone and build-in file system Storage Providers to use remoate Storage
+## Install the Latest Version of Rclone
 
-i use sharepoint-356 as example for remote storage you can find out more storage supposted by rclone [here](https://github.com/rclone/rclone?tab=readme-ov-file#storage-providers)
-
-## install rclone latest version
+To install Rclone, run the following commands:
 
 ```bash
 curl https://rclone.org/install.sh | sudo bash
 rclone version
 ```
 
-## Configuraion Rclone
+## Configure Rclone
 
-I reference this document [link 1](https://rclone.org/onedrive/#excessive-throttling-or-blocked-on-sharepoint) and [link 2](https://rclone.org/remote_setup/)
+For configuring Rclone, I referenced these two documents: [link 1](https://rclone.org/onedrive/#excessive-throttling-or-blocked-on-sharepoint) and [link 2](https://rclone.org/remote_setup/).
+
+To start the configuration, run:
 
 ```bash
 rclone config
+```
+
+You will see the following options:
+
+```
 e) Edit existing remote
 n) New remote
 d) Delete remote
@@ -28,52 +33,35 @@ r) Rename remote
 c) Copy remote
 s) Set configuration password
 q) Quit config
-e/n/d/r/c/s/q>n
 ```
 
-1. choose n for create new one
+### Step 1: Create a New Remote
+
+Choose `n` to create a new remote.
 
 ```bash
 Enter name for new remote.
 name> sharepoint365
 ```
 
-2. namming your configuration
+### Step 2: Naming Your Configuration
+
+You will be prompted to choose the type of storage to configure. Choose the number corresponding to "Microsoft OneDrive" (in my case, it's 36).
 
 ```bash
 Option Storage.
 Type of storage to configure.
 Choose a number from below, or type in your own value.
- 1 / 1Fichier
-   \ (fichier)
- 2 / Akamai NetStorage
-   \ (netstorage)
- 3 / Alias for an existing remote
-   \ (alias)
- 4 / Amazon S3 Compliant Storage Providers including AWS, Alibaba, ArvanCloud, Ceph, ChinaMobile, Cloudflare, DigitalOcean, Dreamhost, GCS, HuaweiOBS, IBMCOS, IDrive, IONOS, LyveCloud, Leviia, Liara, Linode, Magalu, Minio, Netease, Outscale, Petabox, RackCorp, Rclone, Scaleway, SeaweedFS, Selectel, StackPath, Storj, Synology, TencentCOS, Wasabi, Qiniu and others
-   \ (s3)
- 5 / Backblaze B2
-   \ (b2)
- 6 / Better checksums for other remotes
-   \ (hasher)
- 7 / Box
-   \ (box)
 ...
-34 / Microsoft Azure Blob Storage
-   \ (azureblob)
-35 / Microsoft Azure Files
-   \ (azurefiles)
 36 / Microsoft OneDrive
    \ (onedrive)
-37 / OpenDrive
-   \ (opendrive)
-38 / OpenStack Swift (Rackspace Cloud Files, Blomp Cloud Storage, Memset Memstore, OVH)
-   \ (swift)
 ...
 Storage>36
 ```
 
-3. up to rclone version, list can be difference so input can be difference. on mine i find out for "Microsoft OneDrive" and input its number (36)
+### Step 3: Client ID
+
+For the `client_id`, `client_secret`, `region`, and `tenant` options, you can leave them empty for default.
 
 ```bash
 Option client_id.
@@ -83,7 +71,7 @@ Enter a value. Press Enter to leave empty.
 client_id> 
 ```
 
-4. leave empty for defaul
+### Step 4: Client Secret
 
 ```bash
 Option client_secret.
@@ -93,7 +81,7 @@ Enter a value. Press Enter to leave empty.
 client_secret> 
 ```
 
-5. leave empty for defaul
+### Step 5: Region
 
 ```bash
 Option region.
@@ -111,7 +99,7 @@ Press Enter for the default (global).
 region> 
 ```
 
-6. leave empty for defaul
+### Step 6: Tenant
 
 ```bash
 Option tenant.
@@ -122,7 +110,7 @@ Enter a value. Press Enter to leave empty.
 tenant>
 ```
 
-7. leave empty for defaul
+### Step 7: Advanced Config
 
 ```bash
 Edit advanced config?
@@ -131,7 +119,9 @@ n) No (default)
 y/n>
 ```
 
-8. input n for keep defaul
+Choose `n` to keep the default settings.
+
+### Step 8: Web Browser Authentication
 
 ```bash
 Use web browser to automatically authenticate rclone with remote?
@@ -144,24 +134,28 @@ n) No
 y/n>N
 ```
 
-9. input N because i configuration for server throw ssh
+Input `N` because I am configuring this for a server through SSH.
+
+### Step 9: Config Token
+
+For this step, you will need to run the following command on a machine that has a web browser:
 
 ```bash
-Option config_token.
-For this to work, you will need rclone available on a machine that has
-a web browser available.
-For more help and alternate methods see: https://rclone.org/remote_setup/
-Execute the following on the machine with the web browser (same rclone
-version recommended):
-	rclone authorize "onedrive"
-Then paste the result.
-Enter a value.
-config_token> 
+rclone authorize "onedrive"
 ```
 
-10. run [rclone authorize "onedrive"] on PC has webbrowse, after authenticate by browse back to terminal to copy token and paste to here
+end of authenticate process on browse, token generate on terminal like bellow
 
 ![1747027983362](image/sharepoint-stograte-provider/1747027983362.png)
+
+
+Then paste the result back into the terminal of server.
+{"access_token":
+....
+
+"expiry":"2025-05-12T13:46:25.57477855+07:00"}
+
+### Step 10: Config Type
 
 ```bash
 Option config_type.
@@ -187,8 +181,11 @@ Press Enter for the default (onedrive).
 config_type>4
 ```
 
-11. i choose 4 to search site on sharepoint i already prepare
-    ![1747028875036](image/sharepoint-stograte-provider/1747028875036.png)
+I chose `4` to search for the site on SharePoint, which I had already prepared.
+
+![1747028875036](image/sharepoint-stograte-provider/1747028875036.png)
+
+### Step 11: Config Search Term
 
 ```bash
 Option config_search_term.
@@ -197,7 +194,9 @@ Enter a value.
 config_search_term> ERPRepository
 ```
 
-12. input site name of sharepoint for search
+Input the site name of SharePoint for the search.
+
+### Step 12: Config Site
 
 ```bash
 Option config_site.
@@ -209,7 +208,9 @@ Press Enter for the default ([mydomain].sharepoint.com,xxx).
 config_site> 1
 ```
 
-13. verify site name to choose correct site (here i choose 1)
+Verify the site name to choose the correct site (here I choose `1`).
+
+### Step 13: Config Drive ID
 
 ```bash
 Option config_driveid.
@@ -221,7 +222,9 @@ Press Enter for the default (document identify).
 config_driveid>1
 ```
 
-14. choose folder to sync (here i choose document, next step will add subfolder for separate prod and dev environment)
+Choose the folder to sync (here I choose `Documents`; the next step will add a subfolder to separate the prod and dev environments).
+
+### Step 14: Drive Confirmation
 
 ```bash
 Drive OK?
@@ -234,7 +237,9 @@ n) No
 y/n> y
 ```
 
-15. confirm choosed folder
+Confirm the chosen folder.
+
+### Step 15: Save Configuration
 
 ```bash
 Configuration complete.
@@ -250,7 +255,7 @@ d) Delete this remote
 y/e/d> y
 ```
 
-16. yes to save configuration
+Yes, save the configuration.
 
 ```bash
 Current remotes:
@@ -269,13 +274,11 @@ q) Quit config
 e/n/d/r/c/s/q>q
 ```
 
-17. input q to quit configuation
+Input `q` to quit the configuration.
 
+The configuration is stored at `~/.config/rclone/rclone.conf`; you can refine the configuration by editing this file.
 
-
-configuration is store at ~/.config/rclone/rclone.conf you can refine configuration by edit this file
-
-## Configuration rclone to mount remote folder to local and always run on system start without user login
+## Configure Rclone to Mount Remote Folder Locally and Run on System Start Without User Login
 
 ```bash
 sudo su -
@@ -285,8 +288,7 @@ mkdir -p $mountPoint
 chown $idempiereUser:$idempiereUser $mountPoint
 ```
 
-1. Create mount point and set right for idempiere user
-
+1. Create a mount point and set the correct permissions for the Idempiere user.
 
 ```bash
 export serviceFilePath=/etc/systemd/system/rclone-mount.service
@@ -336,14 +338,13 @@ chown $idempiereUser:$idempiereUser $devMountPoint
 
 ```
 
-2. create service for auto run
-
-3. configuration Storage Provider on idempiere (can be on Tenant or System level)
+2. Create a service for auto-run.
+3. Configure the Storage Provider in Idempiere (this can be done at the Tenant or System level).
 
 ![1747031721907](image/sharepoint-stograte-provider/1747031721907.png)
 
 ![1747031787302](image/sharepoint-stograte-provider/1747031787302.png)
 
-4. run "Migrate Storage Provider" to move current file (on database) to new Storage Provider
+4. Run "Migrate Storage Provider" to move the current files (from the database) to the new Storage Provider.
 
 ![1747031856651](image/sharepoint-stograte-provider/1747031856651.png)
