@@ -150,10 +150,13 @@ end of authenticate process on browse, token generate on terminal like bellow
 
 
 Then paste the result back into the terminal of server.
+
+```bash
 {"access_token":
 ....
 
 "expiry":"2025-05-12T13:46:25.57477855+07:00"}
+```
 
 ### Step 10: Config Type
 
