@@ -1,3 +1,7 @@
+# Sharepoint storage provider by Rclone
+
+**Sponsored by**: [nTier Software Services](https://www.ntier.co.za/)
+
 By default, Idempiere stores files in a database. It has built-in Storage Providers to use the file system. But what if you want to use remote storage like Google Drive, OneDrive, SharePoint, etc.?
 
 Implementing a new Storage Provider for each remote storage is one option. This guide will help you use Rclone and the built-in file system Storage Providers to utilize remote storage.
@@ -147,7 +151,6 @@ rclone authorize "onedrive"
 end of authenticate process on browse, token generate on terminal like bellow
 
 ![1747027983362](image/sharepoint-stograte-provider/1747027983362.png)
-
 
 Then paste the result back into the terminal of server.
 
