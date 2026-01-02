@@ -1,0 +1,42 @@
+database for window 10
+
+
+export dockerPgName=pg16
+export dockerDumpDir=/pgdump
+export dbPort=5432
+export dumpDir=
+
+docker run -d \
+  --restart unless-stopped \
+  --shm-size=1g \
+  -e POSTGRES_PASSWORD=postgres \
+  -v $dumpDir:$dockerDumpDir \
+  --name $dockerPgName \
+  -p $dbPort:5432 \
+  postgres:16-bookworm
+
+docker exec $dockerPgName mkdir -p $dockerDumpDir
+docker exec $dockerPgName \
+    psql -U postgres -c "CREATE ROLE adempiere SUPERUSER LOGIN PASSWORD 'adempiere'"
+
+
+export dbLocale=en_US.UTF-8
+export prefixCmd="docker exec $dockerPgName"
+export connStr="-h localhost -p $dbPort -U adempiere"
+export dbName=idempiere-12
+
+export dumpPath=$PWD/org.adempiere.server-feature/data/seed/Adempiere_pg.dmp
+export dumpName=Adempiere_pg.dmp
+
+cd $( dirname $dumpPath )
+jar xvf Adempiere_pg.jar
+cd -
+sudo rm $dumpDir/$dumpName
+cp $dumpPath $dumpDir
+chmod 444 $dumpDir/$dumpName
+
+$prefixCmd dropdb $connStr --if-exists "$dbName"
+
+$prefixCmd createdb $connStr --template="template0" -E UNICODE --lc-collate $dbLocale --lc-ctype $dbLocale -O adempiere "$dbName"
+
+$prefixCmd psql $connStr --dbname "$dbName" -f "$dockerDumpDir/$dumpName"
